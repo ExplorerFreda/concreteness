@@ -43,7 +43,10 @@ def build_tags_json(annotation_path, tags_json_filename):
 def load_tags_json(tags_json_filename):
     with open(tags_json_filename, 'r') as tags_json_file:
         image_paths, image_tags = json.load(tags_json_file)
-        return image_paths, image_tags
+        new_image_tags = dict()
+        for key in image_tags:
+            new_image_tags[int(key)] = image_tags[key]
+        return image_paths, new_image_tags
 
 
 def get_tag_scores(image_tags):
